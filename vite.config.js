@@ -4,6 +4,12 @@ import { resolve } from "path";
 import macrosPlugin from "vite-plugin-babel-macros";
 import { viteExternalsPlugin } from "vite-plugin-externals";
 
+const isDev = process.env.ENVIRONMENT === "DEVELOPMENT";
+console.log("env.dev:", process.env.ENVIRONMENT, " isDev:", isDev);
+
+/**
+ * browserify for web3 components
+ */
 const externals = {
   http: "http-browserify",
   https: "http-browserify",
