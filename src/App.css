@@ -1,0 +1,251 @@
+@import url(//db.onlinewebfonts.com/c/c0cd6ec8ce6d2bbd315a13b62ed13550?family=AdihausDIN);
+
+* {
+  font-family: "AdihausDIN", Helvetica, Arial;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stop-button {
+  margin-bottom: 20px;
+  background-color: #35baf6;
+  outline: none;
+  color: #fff;
+  padding: 15px 50px;
+  margin-right: 20px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+}
+
+.bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.main {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background-color: #000;
+  max-width: 960px;
+  max-height: 50vh;
+  width: 960px;
+  height: 50vh;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  overflow: hidden;
+}
+
+.main-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-left img {
+  border-radius: 15px;
+}
+
+.main-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.main-right h3 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.main-right p {
+  margin: 10px 0;
+}
+
+.filled {
+  background-color: #fff;
+  outline: none;
+  color: #000;
+  padding: 15px 50px;
+  margin-right: 20px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+}
+
+.filled:hover,
+.transparentButton:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.transparentButton {
+  background-color: transparent;
+  outline: none;
+  color: #fff;
+  padding: 15px 50px;
+  margin-right: 20px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #fff;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+}
+
+.transparentButton:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.music-container {
+  background-color: #000;
+  color: #fff;
+  max-width: 400px;
+  width: 300px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.music-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.music-container > div {
+  display: flex;
+  align-items: center;
+}
+
+.music-container h4,
+.music-container p {
+  margin: 0;
+}
+
+.music-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.music-left {
+  margin-right: 10px;
+}
+
+.music-url {
+  color: #35baf6;
+}
+
+.music-controls {
+  max-width: 220px;
+  width: 220px;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+}
+
+.music-controls > div {
+  margin-right: 15px;
+}
+
+.music-control {
+  height: 45px;
+  width: 45px;
+  font-size: 1.2rem;
+  background-color: #35baf6;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  cursor: pointer;
+}
+
+.minting-now {
+  position: absolute;
+  width: 100%;
+  background-color: #35baf6;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 5px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pending-transaction h3 {
+  margin-bottom: 30px;
+}
+
+.pending-transaction span {
+  left: 40px;
+}
+
+.main-rightButtonsPending {
+  position: relative;
+  top: 40px;
+}
