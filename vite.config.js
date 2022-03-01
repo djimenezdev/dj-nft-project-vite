@@ -52,9 +52,7 @@ export default defineConfig({
     jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
   define: {},
-  optimizeDeps: {
-    exclude: excludeDeps,
-  },
+
   resolve: {
     preserveSymlinks: true,
     mainFields: ["module", "main", "browser"],
