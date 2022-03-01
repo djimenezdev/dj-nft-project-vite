@@ -7,7 +7,7 @@ import { useMoralis } from "react-moralis";
 import abi from "./constants.json";
 import { useEffect, useState } from "react";
 import PropagateLoader from "react-spinners/PropagateLoader";
-
+// main comp
 function App() {
   const { authenticate, isAuthenticated, Moralis, logout } = useMoralis();
   const [minted, setMinted] = useState(0);
