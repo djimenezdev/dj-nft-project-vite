@@ -1,6 +1,8 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+
+import reactPlugin from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+// import reactRefresh from '@vitejs/plugin-react-refresh';
 import macrosPlugin from "vite-plugin-babel-macros";
 import { viteExternalsPlugin } from "vite-plugin-externals";
 
@@ -32,9 +34,13 @@ const externalPlugin = viteExternalsPlugin({
   ...(isDev ? { ...nodeShims } : {}),
 });
 
-// https://vitejs.dev/config/
+/**
+ * These libraries should not be egarly bundled by vite.  They have strange dependencies and are not needed for the app.
+ */
+const excludeDeps = ["@apollo/client", `graphql`];
+
 export default defineConfig({
-  plugins: [react(), macrosPlugin(), externalPlugin],
+  plugins: [reactPlugin(), macrosPlugin(), externalPlugin],
   build: {
     sourcemap: true,
     commonjsOptions: {
@@ -52,7 +58,9 @@ export default defineConfig({
     jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
   define: {},
-
+  optimizeDeps: {
+    exclude: excludeDeps,
+  },
   resolve: {
     preserveSymlinks: true,
     mainFields: ["module", "main", "browser"],
