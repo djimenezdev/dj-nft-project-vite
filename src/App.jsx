@@ -7,7 +7,7 @@ import { useMoralis } from "react-moralis";
 import abi from "./constants.json";
 import { useEffect, useState } from "react";
 import PropagateLoader from "react-spinners/PropagateLoader";
-// main comp
+
 function App() {
   const { authenticate, isAuthenticated, Moralis, logout } = useMoralis();
   const [minted, setMinted] = useState(0);
@@ -29,19 +29,24 @@ function App() {
     setProgress(await transaction.wait());
   };
 
-  useEffect(async () => {
-    const web3Provider = await Moralis?.enableWeb3();
+  useEffect(() => {
+    const web3Func = async () => {
+      const web3Provider = await Moralis?.enableWeb3();
 
-    // gives access to ethers without having to directly install
-    const ethers = Moralis?.web3Library;
+      // gives access to ethers without having to directly install
+      const ethers = Moralis?.web3Library;
 
-    const contract = new ethers.Contract(
-      "0x248a6344da2d19b21Ace79b784042980204F67e6",
-      abi,
-      web3Provider
-    );
-    setMinted(parseInt(await contract?.totalSupply(0), 16));
-  }, [progress?.blockHash]);
+      const contract = new ethers.Contract(
+        "0x248a6344da2d19b21Ace79b784042980204F67e6",
+        abi,
+        web3Provider
+      );
+      setMinted(parseInt(await contract?.totalSupply(0), 16));
+    };
+    if (isAuthenticated) {
+      web3Func();
+    }
+  }, [isAuthenticated, Moralis, progress?.blockHash]);
 
   return (
     <div className="App">
@@ -64,7 +69,13 @@ function App() {
           {!progress ? (
             <>
               <h3>DJ NFT: Exploring the World of NFTs</h3>
-              <p className="description">{minted} minted / 300</p>
+              {isAuthenticated ? (
+                <p className="description">{minted} minted / 300</p>
+              ) : (
+                <p className="description">
+                  Connect Wallet to see total minted
+                </p>
+              )}
               <div className="main-rightButtons">
                 <button
                   type="button"
@@ -73,13 +84,15 @@ function App() {
                 >
                   {isAuthenticated ? "MINT" : "Connect Wallet"}
                 </button>
-                <button
-                  type="button"
-                  className="transparentButton"
-                  onClick={async () => await logout()}
-                >
-                  START OVER
-                </button>
+                {isAuthenticated && (
+                  <button
+                    type="button"
+                    className="transparentButton"
+                    onClick={async () => await logout()}
+                  >
+                    START OVER
+                  </button>
+                )}
               </div>
             </>
           ) : progress === "pending" ? (
@@ -118,13 +131,15 @@ function App() {
                 >
                   {isAuthenticated ? "MINT" : "Connect Wallet"}
                 </button>
-                <button
-                  type="button"
-                  className="transparentButton"
-                  onClick={async () => await logout()}
-                >
-                  START OVER
-                </button>
+                {isAuthenticated && (
+                  <button
+                    type="button"
+                    className="transparentButton"
+                    onClick={async () => await logout()}
+                  >
+                    START OVER
+                  </button>
+                )}
               </div>
             </>
           )}
