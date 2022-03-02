@@ -5,9 +5,9 @@ import { defineConfig } from "vite";
 // import reactRefresh from '@vitejs/plugin-react-refresh';
 import macrosPlugin from "vite-plugin-babel-macros";
 import { viteExternalsPlugin } from "vite-plugin-externals";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const isDev = process.env.ENVIRONMENT === "DEVELOPMENT";
-console.log("env.dev:", process.env.ENVIRONMENT, " isDev:", isDev);
 
 /**
  * browserify for web3 components
@@ -40,7 +40,7 @@ const externalPlugin = viteExternalsPlugin({
 const excludeDeps = ["@apollo/client", `graphql`];
 
 export default defineConfig({
-  plugins: [reactPlugin(), macrosPlugin(), externalPlugin],
+  plugins: [reactPlugin(), macrosPlugin(), tsconfigPaths(), externalPlugin],
   build: {
     sourcemap: true,
     commonjsOptions: {
