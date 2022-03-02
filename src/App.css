@@ -1,4 +1,21 @@
-@import url(//db.onlinewebfonts.com/c/c0cd6ec8ce6d2bbd315a13b62ed13550?family=AdihausDIN);
+@font-face {
+  font-family: "AdihausDIN";
+  src: url("https://db.onlinewebfonts.com/t/c0cd6ec8ce6d2bbd315a13b62ed13550.eot"); /* IE9*/
+  src: url("https://db.onlinewebfonts.com/t/c0cd6ec8ce6d2bbd315a13b62ed13550.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("https://db.onlinewebfonts.com/t/c0cd6ec8ce6d2bbd315a13b62ed13550.woff2")
+      format("woff2"),
+    /* chrome firefox */
+      url("https://db.onlinewebfonts.com/t/c0cd6ec8ce6d2bbd315a13b62ed13550.woff")
+      format("woff"),
+    /* chrome firefox */
+      url("https://db.onlinewebfonts.com/t/c0cd6ec8ce6d2bbd315a13b62ed13550.ttf")
+      format("truetype"),
+    /* chrome firefox opera Safari, Android, iOS 4.2+*/
+      url("https://db.onlinewebfonts.com/t/c0cd6ec8ce6d2bbd315a13b62ed13550.svg#AdihausDIN")
+      format("svg"); /* iOS 4.1- */
+}
 
 * {
   font-family: "AdihausDIN", Helvetica, Arial;
