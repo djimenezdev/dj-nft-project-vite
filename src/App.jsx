@@ -1,31 +1,31 @@
-import "./App.css";
-import backgroundVideo from "./assets/background.mp4";
-import Music from "./Music";
-import nftGif from "./assets/nft.gif";
-import { musicData } from "./assets/music";
-import { useMoralis } from "react-moralis";
-import abi from "./constants.json";
-import { useEffect, useState } from "react";
-import PropagateLoader from "react-spinners/PropagateLoader";
+import './App.css';
+import backgroundVideo from './assets/background.mp4';
+import Music from './Music';
+import nftGif from './assets/nft.gif';
+import { musicData } from './assets/music';
+import { useMoralis } from 'react-moralis';
+import abi from './constants.json';
+import { useEffect, useState } from 'react';
+import PropagateLoader from 'react-spinners/PropagateLoader';
 
 function App() {
   const { authenticate, isAuthenticated, Moralis, logout } = useMoralis();
   const [minted, setMinted] = useState(0);
   const [progress, setProgress] = useState(null);
-  const [txURL, setTxURL] = useState("");
+  const [txURL, setTxURL] = useState('');
 
   const mintFunc = async () => {
     const transaction = await Moralis.executeFunction({
-      contractAddress: "0x248a6344da2d19b21Ace79b784042980204F67e6",
-      functionName: "mint",
+      contractAddress: '0xa488191Ce316Ad676B458f362AfD0726aF717D76',
+      functionName: 'mint',
       abi,
       params: {
         amount: 1,
       },
-      msgValue: 1000000000000000,
+      msgValue: Moralis.Units.ETH('0.0001'),
     });
-    setProgress("pending");
-    setTxURL(`https://rinkeby.etherscan.io/tx/${transaction.hash}`);
+    setProgress('pending');
+    setTxURL(`https://ropsten.etherscan.io/tx/${transaction.hash}`);
     setProgress(await transaction.wait());
   };
 
@@ -37,7 +37,7 @@ function App() {
       const ethers = Moralis?.web3Library;
 
       const contract = new ethers.Contract(
-        "0x248a6344da2d19b21Ace79b784042980204F67e6",
+        '0xa488191Ce316Ad676B458f362AfD0726aF717D76',
         abi,
         web3Provider
       );
@@ -49,10 +49,10 @@ function App() {
   }, [isAuthenticated, Moralis, progress?.blockHash]);
 
   return (
-    <div className="App">
+    <div className='App'>
       <Music data={musicData} />
       <video
-        className="bg-video"
+        className='bg-video'
         src={backgroundVideo}
         width={600}
         height={300}
@@ -61,33 +61,40 @@ function App() {
         loop
         muted
       />
-      <div className="main">
-        <div className="main-left">
-          <img src={nftGif} alt="" />
+      <div className='main'>
+        <div className='main-left'>
+          <img src={nftGif} alt='' />
         </div>
-        <div className="main-right">
+        <div className='main-right'>
           {!progress ? (
             <>
               <h3>DJ NFT: Exploring the World of NFTs</h3>
               {isAuthenticated ? (
-                <p className="description">{minted} minted / 300</p>
+                <p className='description'>{minted} minted / 300</p>
               ) : (
-                <p className="description">
+                <p className='description'>
                   Connect Wallet to see total minted
                 </p>
               )}
-              <div className="main-rightButtons">
+              <div className='main-rightButtons'>
                 <button
-                  type="button"
-                  className="filled"
-                  onClick={isAuthenticated ? mintFunc : authenticate}
+                  type='button'
+                  className='filled'
+                  onClick={
+                    isAuthenticated
+                      ? mintFunc
+                      : () =>
+                          authenticate({
+                            signingMessage: 'Sign into DJNFT To mint your NFT!',
+                          })
+                  }
                 >
-                  {isAuthenticated ? "MINT" : "Connect Wallet"}
+                  {isAuthenticated ? 'MINT' : 'Connect Wallet'}
                 </button>
                 {isAuthenticated && (
                   <button
-                    type="button"
-                    className="transparentButton"
+                    type='button'
+                    className='transparentButton'
                     onClick={async () => await logout()}
                   >
                     START OVER
@@ -95,16 +102,16 @@ function App() {
                 )}
               </div>
             </>
-          ) : progress === "pending" ? (
-            <div className="pending-transaction">
+          ) : progress === 'pending' ? (
+            <div className='pending-transaction'>
               <h3>Transaction In Progress...</h3>
               <div style={{ marginTop: 80 }}>
-                <PropagateLoader color="#35baf6" size={10} />
-                <div className="main-rightButtonsPending">
+                <PropagateLoader color='#35baf6' size={10} />
+                <div className='main-rightButtonsPending'>
                   <button
-                    type="button"
-                    className="filled"
-                    onClick={() => window.open(txURL, "_blank")}
+                    type='button'
+                    className='filled'
+                    onClick={() => window.open(txURL, '_blank')}
                   >
                     Check Etherscan
                   </button>
@@ -121,20 +128,20 @@ function App() {
           ) : (
             <>
               <h3>DJ NFT: Exploring the World of NFTs</h3>
-              <p className="description">{minted} minted / 300</p>
-              <p className="description">Congrats you have minted the NFT!</p>
-              <div className="main-rightButtons">
+              <p className='description'>{minted} minted / 300</p>
+              <p className='description'>Congrats you have minted the NFT!</p>
+              <div className='main-rightButtons'>
                 <button
-                  type="button"
-                  className="filled"
+                  type='button'
+                  className='filled'
                   onClick={isAuthenticated ? mintFunc : authenticate}
                 >
-                  {isAuthenticated ? "MINT" : "Connect Wallet"}
+                  {isAuthenticated ? 'MINT' : 'Connect Wallet'}
                 </button>
                 {isAuthenticated && (
                   <button
-                    type="button"
-                    className="transparentButton"
+                    type='button'
+                    className='transparentButton'
                     onClick={async () => await logout()}
                   >
                     START OVER
@@ -146,7 +153,7 @@ function App() {
         </div>
         {/* minting now div only appears if wallet is connected */}
         {isAuthenticated && (
-          <div className="minting-now">
+          <div className='minting-now'>
             <p>Minting Now</p>
           </div>
         )}
