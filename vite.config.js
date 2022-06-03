@@ -1,27 +1,27 @@
-import { resolve } from "path";
+import { resolve } from 'path';
 
-import reactPlugin from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import reactPlugin from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 // import reactRefresh from '@vitejs/plugin-react-refresh';
-import macrosPlugin from "vite-plugin-babel-macros";
-import { viteExternalsPlugin } from "vite-plugin-externals";
+import macrosPlugin from 'vite-plugin-babel-macros';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
 // import tsconfigPaths from "vite-tsconfig-paths";
 
-const isDev = process.env.ENVIRONMENT === "DEVELOPMENT";
+const isDev = process.env.ENVIRONMENT === 'DEVELOPMENT';
 
 /**
  * browserify for web3 components
  */
 const externals = {
-  http: "http-browserify",
-  https: "http-browserify",
-  timers: "timers-browserify",
-  electron: "electron",
-  "electron-fetch": "electron-fetch",
+  http: 'http-browserify',
+  https: 'http-browserify',
+  timers: 'timers-browserify',
+  electron: 'electron',
+  'electron-fetch': 'electron-fetch',
 };
 
 const nodeShims = {
-  util: "util",
+  util: 'util',
 };
 
 /**
@@ -37,7 +37,7 @@ const externalPlugin = viteExternalsPlugin({
 /**
  * These libraries should not be egarly bundled by vite.  They have strange dependencies and are not needed for the app.
  */
-const excludeDeps = ["@apollo/client", `graphql`];
+const excludeDeps = ['@apollo/client', `graphql`];
 
 export default defineConfig({
   plugins: [
@@ -53,12 +53,12 @@ export default defineConfig({
     },
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),
+        main: resolve(__dirname, 'index.html'),
       },
     },
   },
   esbuild: {
-    jsxFactory: "jsx",
+    jsxFactory: 'jsx',
     jsxInject: `import {jsx, css} from '@emotion/react'`,
   },
   define: {},
@@ -67,22 +67,23 @@ export default defineConfig({
   },
   resolve: {
     preserveSymlinks: true,
-    mainFields: ["module", "main", "browser"],
+    mainFields: ['module', 'main', 'browser'],
     alias: {
-      "~~": resolve(__dirname, "src"),
+      '~~': resolve(__dirname, 'src'),
       ...externals,
       ...nodeShims,
-      process: "process",
-      stream: "stream-browserify",
+      process: 'process',
+      stream: 'stream-browserify',
     },
   },
   server: {
+    open: '/',
     watch: {
       followSymlinks: true,
     },
     fs: {
       // compatability for yarn workspaces
-      allow: ["../../"],
+      allow: ['../../'],
     },
   },
   css: {
