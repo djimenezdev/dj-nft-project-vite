@@ -25,7 +25,7 @@ function App() {
       msgValue: Moralis.Units.ETH('0.0001'),
     });
     setProgress('pending');
-    setTxURL(`https://ropsten.etherscan.io/tx/${transaction.hash}`);
+    setTxURL(`https://rinkeby.etherscan.io/tx/${transaction.hash}`);
     setProgress(await transaction.wait());
   };
 
